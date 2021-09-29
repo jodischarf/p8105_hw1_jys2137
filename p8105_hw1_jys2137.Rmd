@@ -123,3 +123,6 @@ Next we present a scatterplot of the `flipper_length_mm` (y) vs `bill_length_mm`
 ggplot(penguins, aes(x = bill_length_mm, y = flipper_length_mm, color = species)) + geom_point()
 ```
 
+```{r save_pdf}
+ggsave("p8105_hw1_jys2137.pdf", height = 4, width = 6)
+```
