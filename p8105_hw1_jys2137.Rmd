@@ -107,7 +107,6 @@ The following code loads the `penguins` data set.
 data("penguins", package = "palmerpenguins")
 ```
 
-
 #### Describing the dataset
 The `penguins` dataset includes observations of `r nrow(penguins)` Palmer Archipelago penguins, taking `r ncol(penguins)` variables into account. 
 
@@ -123,7 +122,6 @@ Next we present a scatterplot of the `flipper_length_mm` (y) vs `bill_length_mm`
 ggplot(penguins, aes(x = bill_length_mm, y = flipper_length_mm, color = species)) + geom_point()
 ```
 
-<<<<<<< HEAD
 ```{r save_pdf}
 ggsave("p8105_hw1_jys2137.pdf", height = 4, width = 6)
 ```
