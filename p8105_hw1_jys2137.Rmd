@@ -27,10 +27,70 @@ To that end:
 
 This “problem” focuses on correct styling for solutions to Problems 1 and 2. 
 
-To that end, I will make sure to:
+To that end, I made sure to:
   
 * use meaningful variable / object names
 * use readable code (one command per line; adequate whitespace and indentation; etc)
 * use clearly-written text to explain code and results
 * avoid using superfluous code (no unused variables are defined; no extra library calls; etc)
+
+
+## Problem 1
+
+### Creating the data frame
+
+The code chunk below creates a **dataframe** comprised of:
+  
+* a random sample of size 10 from a standard Normal distribution
+* a logical vector indicating whether elements of the sample are greater than 0
+* a character vector of length 10
+* a factor vector of length 10, with 3 different factor "levels"
+
+```{r df_create}
+problem1_df = 
+  tibble(
+    samp = rnorm(10),
+    samp_pos = samp > 0,
+    vec_char = c("monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday", "someday", "birthday", "yesterday"),
+    vec_factor = factor(c("sunny", "sunny", "sunny", "cloudy", "cloudy", "cloudy", "rainy", "rainy", "rainy", "rainy"))
+)
+```
+
+### Taking the mean of each variable in the data frame
+
+Here, we try to take the means of the variables `samp`, `samp_pos`, `vec_char`, and `vec_factor`.
+
+```{r mean_pull_var}
+mean(pull(problem1_df, samp))
+mean(pull(problem1_df, samp_pos))
+mean(pull(problem1_df, vec_char))
+mean(pull(problem1_df, vec_factor))
+```
+
+Note that when trying to take the mean, the following **works**:
+  
+* The variable `samp`. _This is numeric._ 
+* The variable `samp_pos`. _This is logical._
+
+When trying to take the mean, the following **does not work**:
+
+* The variable `vec_char`. _This is neither numeric nor logical. We get a warning message and a subsequent output of `NA`._
+* The variable `vec_factor`. _As above, this is neither numeric nor logical. We get message and a warning and a subsequent output of `NA`._
+
+### Explicitly converting variables to numeric
+
+The chunk below applies the `as.numeric` function to the logical, character, and factor variables.
+
+```{r try_numeric, warning = FALSE, results = "hide", message = FALSE}
+
+as.numeric(pull(problem1_df, samp))
+as.numeric(pull(problem1_df, samp_pos))
+as.numeric(pull(problem1_df, vec_char))
+as.numeric(pull(problem1_df, vec_factor))
+```
+
+* Note: the code for `samp` works because it is numeric.
+* Converting `samp_pos` to numeric **works**. This happens because it considered "FALSE" as 0 and "TRUE" as 1, which helps explain why it works when we try to take the mean since it can be calculated as a fraction of the values that are "TRUE".
+* Converting `vec_char` to numeric **does not work**. We get an output of NAs because the values cannot be interpreted as numeric, which helps exlain why we could not take the mean.
+* Converting `vec_factor` to numeric **works**. This happens because it considered `"sunny"` as 3, `"cloudy"` as 1, and `"rainy"` as 2, which explains why we were able to take the mean.
 
