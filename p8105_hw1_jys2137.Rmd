@@ -47,6 +47,8 @@ The code chunk below creates a **dataframe** comprised of:
 * a factor vector of length 10, with 3 different factor "levels"
 
 ```{r df_create}
+set.seed(1234)
+
 problem1_df = 
   tibble(
     samp = rnorm(10),
@@ -75,7 +77,7 @@ Note that when trying to take the mean, the following **works**:
 When trying to take the mean, the following **does not work**:
 
 * The variable `vec_char`. _This is neither numeric nor logical. We get a warning message and a subsequent output of `NA`._
-* The variable `vec_factor`. _As above, this is neither numeric nor logical. We get message and a warning and a subsequent output of `NA`._
+* The variable `vec_factor`. _As with the case above above, this is neither numeric nor logical. We get a warning message and a subsequent output of `NA`._
 
 ### Explicitly converting variables to numeric
 
@@ -89,8 +91,35 @@ as.numeric(pull(problem1_df, vec_char))
 as.numeric(pull(problem1_df, vec_factor))
 ```
 
-* Note: the code for `samp` works because it is numeric.
+* Note: the code for `samp` works because it _is_ numeric.
 * Converting `samp_pos` to numeric **works**. This happens because it considered "FALSE" as 0 and "TRUE" as 1, which helps explain why it works when we try to take the mean since it can be calculated as a fraction of the values that are "TRUE".
-* Converting `vec_char` to numeric **does not work**. We get an output of NAs because the values cannot be interpreted as numeric, which helps exlain why we could not take the mean.
+* Converting `vec_char` to numeric **does not work**. We get an output of NAs because the values cannot be interpreted as numeric, which helps explain why we could not take the mean.
 * Converting `vec_factor` to numeric **works**. This happens because it considered `"sunny"` as 3, `"cloudy"` as 1, and `"rainy"` as 2, which explains why we were able to take the mean.
+
+
+## Problem 2
+
+### Using the `penguins` dataset
+
+The following code loads the `penguins` data set.
+
+```{r}
+data("penguins", package = "palmerpenguins")
+```
+
+
+#### Describing the dataset
+The `penguins` dataset includes observations of `r nrow(penguins)` Palmer Archipelago penguins, taking `r ncol(penguins)` variables into account. 
+
+These `r ncol(penguins)` variables include descriptive characteristics (including the `species`, `sex`, `island`, and `year` of data collection) as well as the body measurements (including body mass and information about the bill and flippers).
+
+For the penguins in this dataset, the mean flipper length  is `r round(mean(pull(penguins, flipper_length_mm), na.rm = TRUE))` mm.
+
+#### Scatterplot of flipper length vs bill length
+
+Next we present a scatterplot of the `flipper_length_mm` (y) vs `bill_length_mm` (x), with colors indicating different species.
+
+```{r scatterplot}
+ggplot(penguins, aes(x = bill_length_mm, y = flipper_length_mm, color = species)) + geom_point()
+```
 
