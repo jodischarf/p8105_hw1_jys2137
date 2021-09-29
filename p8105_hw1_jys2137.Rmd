@@ -1,0 +1,36 @@
+---
+title: "Homework 1"
+author: "jys2137"
+date: 2021-09-29
+output: github_document
+---
+
+```{r setup, include = FALSE}
+library(tidyverse)
+```
+
+The purpose of this file is to present the answers to Homework 1, an assignment reinforcing ideas in the **building blocks** topic for P8105. 
+
+
+## Problem 0.1
+
+This “problem” focuses on the use of R Markdown to write reproducible reports, GitHub for version control, and R Projects to organize the work.
+
+To that end:
+  
+* I created a public GitHub repo + local R Project; naming this repo / directory p8105_hw1_jys2137
+* I created a single .Rmd file named p8105_hw1_jys2137.Rmd that renders to github_document
+* I submitted a link to my repo via Courseworks
+
+
+## Problem 0.2
+
+This “problem” focuses on correct styling for solutions to Problems 1 and 2. 
+
+To that end, I will make sure to:
+  
+* use meaningful variable / object names
+* use readable code (one command per line; adequate whitespace and indentation; etc)
+* use clearly-written text to explain code and results
+* avoid using superfluous code (no unused variables are defined; no extra library calls; etc)
+
