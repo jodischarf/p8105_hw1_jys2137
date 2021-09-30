@@ -114,9 +114,9 @@ For the penguins in this dataset, the mean flipper length  is `r round(mean(pull
 
 #### Summary of the dataset
 
-Using `skimr::skim` for a neat and quick look into the data.
+Using `skimr::skim` for a neat look into the data.
 
-```{rd skimr}
+```{r skimr}
 skimr::skim(penguins)
 ```
 
